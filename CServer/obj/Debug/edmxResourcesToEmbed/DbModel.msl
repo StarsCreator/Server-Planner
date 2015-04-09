@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CamozziModelStoreContainer" CdmEntityContainer="CamozziEntities">
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="CamozziModel.Account">
+        <MappingFragment StoreEntitySet="Accounts">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="AllowCreateAll" ColumnName="AllowCreateAll" />
+          <ScalarProperty Name="AllowCreateSelf" ColumnName="AllowCreateSelf" />
+          <ScalarProperty Name="AllowCommment" ColumnName="AllowCommment" />
+          <ScalarProperty Name="AllowRow" ColumnName="AllowRow" />
+          <ScalarProperty Name="AllowReclamation" ColumnName="AllowReclamation" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Depts">
+      <EntityTypeMapping TypeName="CamozziModel.Dept">
+        <MappingFragment StoreEntitySet="Depts">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Projects">
+      <EntityTypeMapping TypeName="CamozziModel.Project">
+        <MappingFragment StoreEntitySet="Projects">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Start" ColumnName="Start" />
+          <ScalarProperty Name="Finish" ColumnName="Finish" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+          <ScalarProperty Name="CreatorId" ColumnName="CreatorId" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Priority" ColumnName="Priority" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="DeptId" ColumnName="DeptId" />
+          <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Reclamations">
+      <EntityTypeMapping TypeName="CamozziModel.Reclamation">
+        <MappingFragment StoreEntitySet="Reclamations">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Start" ColumnName="Start" />
+          <ScalarProperty Name="Finish" ColumnName="Finish" />
+          <ScalarProperty Name="ManagerId" ColumnName="ManagerId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="CreatorId" ColumnName="CreatorId" />
+          <ScalarProperty Name="Send" ColumnName="Send" />
+          <ScalarProperty Name="Production" ColumnName="Production" />
+          <ScalarProperty Name="Nomenclature" ColumnName="Nomenclature" />
+          <ScalarProperty Name="Act" ColumnName="Act" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+          <ScalarProperty Name="Solution" ColumnName="Solution" />
+          <ScalarProperty Name="Client" ColumnName="Client" />
+          <ScalarProperty Name="ReclamationAct" ColumnName="ReclamationAct" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="CamozziModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="DeptId" ColumnName="DeptId" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Mail" ColumnName="Mail" />
+          <ScalarProperty Name="AccountId" ColumnName="AccountId" />
+          <ScalarProperty Name="Comment" ColumnName="Comment" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

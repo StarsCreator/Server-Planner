@@ -1,0 +1,10 @@
+C:\Users\ШаталовАА\Documents\Visual Studio 2013\Projects\CamozziServer\CServer\bin\Debug\CServer.dll.config
+C:\Users\ШаталовАА\Documents\Visual Studio 2013\Projects\CamozziServer\CServer\bin\Debug\CServer.dll
+C:\Users\ШаталовАА\Documents\Visual Studio 2013\Projects\CamozziServer\CServer\bin\Debug\CServer.pdb
+C:\Users\ШаталовАА\Documents\Visual Studio 2013\Projects\CamozziServer\CServer\bin\Debug\DataController.dll
+C:\Users\ШаталовАА\Documents\Visual Studio 2013\Projects\CamozziServer\CServer\bin\Debug\EntityFramework.dll
+C:\Users\ШаталовАА\Documents\Visual Studio 2013\Projects\CamozziServer\CServer\bin\Debug\DataController.pdb
+C:\Users\ШаталовАА\Documents\Visual Studio 2013\Projects\CamozziServer\CServer\bin\Debug\EntityFramework.xml
+C:\Users\ШаталовАА\Documents\Visual Studio 2013\Projects\CamozziServer\CServer\obj\Debug\CService.csprojResolveAssemblyReference.cache
+C:\Users\ШаталовАА\Documents\Visual Studio 2013\Projects\CamozziServer\CServer\obj\Debug\CServer.dll
+C:\Users\ШаталовАА\Documents\Visual Studio 2013\Projects\CamozziServer\CServer\obj\Debug\CServer.pdb
