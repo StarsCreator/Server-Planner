@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CServer", "CServer\CServer.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CamozziServer", "CamozziServer\CamozziServer.csproj", "{71D0C22F-A8C9-436F-8396-93F9559B7DB4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataController", "DataController\DataController.csproj", "{78D54F02-76C5-4FDB-8005-573EE5C1DF8C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{71D0C22F-A8C9-436F-8396-93F9559B7DB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71D0C22F-A8C9-436F-8396-93F9559B7DB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71D0C22F-A8C9-436F-8396-93F9559B7DB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{78D54F02-76C5-4FDB-8005-573EE5C1DF8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{78D54F02-76C5-4FDB-8005-573EE5C1DF8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{78D54F02-76C5-4FDB-8005-573EE5C1DF8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{78D54F02-76C5-4FDB-8005-573EE5C1DF8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

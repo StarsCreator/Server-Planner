@@ -40,9 +40,9 @@
     <Property Name="DeptId" Type="Int32" Nullable="false" />
     <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
     <NavigationProperty Name="Dept" Relationship="Self.FK_DeptProject" FromRole="Projects" ToRole="Depts" />
-    <NavigationProperty Name="User" Relationship="Self.FK_UserProject" FromRole="Projects" ToRole="Users" />
-    <NavigationProperty Name="User1" Relationship="Self.FK_UserProject1" FromRole="Projects" ToRole="Users" />
-    <NavigationProperty Name="User2" Relationship="Self.FK_UserProject2" FromRole="Projects" ToRole="Users" />
+    <NavigationProperty Name="Creator" Relationship="Self.FK_UserProject" FromRole="Projects" ToRole="Users" />
+    <NavigationProperty Name="Manager" Relationship="Self.FK_UserProject1" FromRole="Projects" ToRole="Users" />
+    <NavigationProperty Name="User" Relationship="Self.FK_UserProject2" FromRole="Projects" ToRole="Users" />
   </EntityType>
   <EntityType Name="Reclamation">
     <Key>
@@ -64,9 +64,9 @@
     <Property Name="Solution" Type="Boolean" Nullable="false" />
     <Property Name="Client" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
     <Property Name="ReclamationAct" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="User" Relationship="Self.FK_UserReclamation" FromRole="Reclamations" ToRole="Users" />
-    <NavigationProperty Name="User1" Relationship="Self.FK_UserReclamation1" FromRole="Reclamations" ToRole="Users" />
-    <NavigationProperty Name="User2" Relationship="Self.FK_UserReclamation2" FromRole="Reclamations" ToRole="Users" />
+    <NavigationProperty Name="Creator" Relationship="Self.FK_UserReclamation" FromRole="Reclamations" ToRole="Users" />
+    <NavigationProperty Name="Manager" Relationship="Self.FK_UserReclamation1" FromRole="Reclamations" ToRole="Users" />
+    <NavigationProperty Name="User" Relationship="Self.FK_UserReclamation2" FromRole="Reclamations" ToRole="Users" />
   </EntityType>
   <EntityType Name="User">
     <Key>
@@ -82,12 +82,12 @@
     <Property Name="Comment" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="Account" Relationship="Self.FK_Users_Accounts" FromRole="Users" ToRole="Accounts" />
     <NavigationProperty Name="Dept" Relationship="Self.FK_DeptsUsers" FromRole="Users" ToRole="Depts" />
-    <NavigationProperty Name="Projects" Relationship="Self.FK_UserProject" FromRole="Users" ToRole="Projects" />
-    <NavigationProperty Name="Projects1" Relationship="Self.FK_UserProject1" FromRole="Users" ToRole="Projects" />
-    <NavigationProperty Name="Projects2" Relationship="Self.FK_UserProject2" FromRole="Users" ToRole="Projects" />
-    <NavigationProperty Name="Reclamations" Relationship="Self.FK_UserReclamation" FromRole="Users" ToRole="Reclamations" />
-    <NavigationProperty Name="Reclamations1" Relationship="Self.FK_UserReclamation1" FromRole="Users" ToRole="Reclamations" />
-    <NavigationProperty Name="Reclamations2" Relationship="Self.FK_UserReclamation2" FromRole="Users" ToRole="Reclamations" />
+    <NavigationProperty Name="CreatedProjects" Relationship="Self.FK_UserProject" FromRole="Users" ToRole="Projects" />
+    <NavigationProperty Name="ManagedProjects" Relationship="Self.FK_UserProject1" FromRole="Users" ToRole="Projects" />
+    <NavigationProperty Name="UsedProjects" Relationship="Self.FK_UserProject2" FromRole="Users" ToRole="Projects" />
+    <NavigationProperty Name="CreatedRec" Relationship="Self.FK_UserReclamation" FromRole="Users" ToRole="Reclamations" />
+    <NavigationProperty Name="ManagedRec" Relationship="Self.FK_UserReclamation1" FromRole="Users" ToRole="Reclamations" />
+    <NavigationProperty Name="UserRec" Relationship="Self.FK_UserReclamation2" FromRole="Users" ToRole="Reclamations" />
   </EntityType>
   <Association Name="FK_Users_Accounts">
     <End Role="Accounts" Type="Self.Account" Multiplicity="1" />

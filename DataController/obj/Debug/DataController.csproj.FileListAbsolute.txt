@@ -1,0 +1,8 @@
+C:\Users\ШаталовАА\Documents\Visual Studio 2013\Projects\CamozziServer\DataController\bin\Debug\DataController.dll.config
+C:\Users\ШаталовАА\Documents\Visual Studio 2013\Projects\CamozziServer\DataController\bin\Debug\DataController.dll
+C:\Users\ШаталовАА\Documents\Visual Studio 2013\Projects\CamozziServer\DataController\bin\Debug\DataController.pdb
+C:\Users\ШаталовАА\Documents\Visual Studio 2013\Projects\CamozziServer\DataController\bin\Debug\EntityFramework.dll
+C:\Users\ШаталовАА\Documents\Visual Studio 2013\Projects\CamozziServer\DataController\bin\Debug\EntityFramework.xml
+C:\Users\ШаталовАА\Documents\Visual Studio 2013\Projects\CamozziServer\DataController\obj\Debug\DataController.dll
+C:\Users\ШаталовАА\Documents\Visual Studio 2013\Projects\CamozziServer\DataController\obj\Debug\DataController.pdb
+C:\Users\ШаталовАА\Documents\Visual Studio 2013\Projects\CamozziServer\DataController\obj\Debug\DataController.csprojResolveAssemblyReference.cache

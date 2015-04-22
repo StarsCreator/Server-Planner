@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
+using DataController.DTO_Model;
 
 namespace CServer
 {
     [ServiceContract]
     internal interface ICService
     {
+
         [OperationContract]
         List<Project> GetProjects();
 
@@ -42,6 +41,9 @@ namespace CServer
 
         [OperationContract]
         List<User> GetUsers();
+
+        [OperationContract]
+        bool CheckPassword(string password, int id);
 
         [OperationContract]
         List<Reclamation> GetReclamations();
