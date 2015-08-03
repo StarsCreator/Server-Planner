@@ -27,9 +27,9 @@ namespace DataController
         public int DeptId { get; set; }
         public System.DateTime CreationDate { get; set; }
     
-        public virtual DeptDb Dept { get; set; }
-        public virtual UserDb Creator { get; set; }
-        public virtual UserDb Manager { get; set; }
-        public virtual UserDb Worker { get; set; }
+        public virtual DeptDb DeptDb { get; set; }
+        public virtual UserDb CreatorDb { get; set; }
+        public virtual UserDb ManagerDb { get; set; }
+        public virtual UserDb WorkerDb { get; set; }
     }
 }

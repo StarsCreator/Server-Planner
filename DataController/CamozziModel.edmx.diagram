@@ -4,11 +4,10 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a0e698926389448e956a40f3738acf0c" Name="Diagram1">
+      <Diagram DiagramId="3fe2980e4d744691bcd8601347b1831e" Name="Diagram1">
         <EntityTypeShape EntityType="CamozziModel.AccountDb" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="CamozziModel.DeptDb" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="CamozziModel.ProjectDb" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="CamozziModel.ReclamationDb" Width="1.75" PointX="8.25" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="CamozziModel.UserDb" Width="1.5" PointX="6" PointY="4.125" IsExpanded="true" />
         <AssociationConnector Association="CamozziModel.FK_Users_Accounts" ManuallyRouted="false" />
         <AssociationConnector Association="CamozziModel.FK_DeptProject" ManuallyRouted="false" />
@@ -16,9 +15,6 @@
         <AssociationConnector Association="CamozziModel.FK_UserProject" ManuallyRouted="false" />
         <AssociationConnector Association="CamozziModel.FK_UserProject1" ManuallyRouted="false" />
         <AssociationConnector Association="CamozziModel.FK_UserProject2" ManuallyRouted="false" />
-        <AssociationConnector Association="CamozziModel.FK_UserReclamation" ManuallyRouted="false" />
-        <AssociationConnector Association="CamozziModel.FK_UserReclamation1" ManuallyRouted="false" />
-        <AssociationConnector Association="CamozziModel.FK_UserReclamation2" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

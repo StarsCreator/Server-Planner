@@ -16,15 +16,15 @@ namespace DataController
     {
         public DeptDb()
         {
-            this.Projects = new HashSet<ProjectDb>();
-            this.Users = new HashSet<UserDb>();
+            this.ProjectDbs = new HashSet<ProjectDb>();
+            this.UserDbs = new HashSet<UserDb>();
         }
     
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
     
-        public virtual ICollection<ProjectDb> Projects { get; set; }
-        public virtual ICollection<UserDb> Users { get; set; }
+        public virtual ICollection<ProjectDb> ProjectDbs { get; set; }
+        public virtual ICollection<UserDb> UserDbs { get; set; }
     }
 }

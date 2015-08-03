@@ -16,12 +16,9 @@ namespace DataController
     {
         public UserDb()
         {
-            this.CreatedProjects = new HashSet<ProjectDb>();
-            this.ManagedProjects = new HashSet<ProjectDb>();
-            this.WorkedProjects = new HashSet<ProjectDb>();
-            this.CreatedReclamations = new HashSet<ReclamationDb>();
-            this.ManagedReclamations = new HashSet<ReclamationDb>();
-            this.WorkedReclamation = new HashSet<ReclamationDb>();
+            this.ProjectDbs = new HashSet<ProjectDb>();
+            this.ProjectDbs1 = new HashSet<ProjectDb>();
+            this.ProjectDbs2 = new HashSet<ProjectDb>();
         }
     
         public int Id { get; set; }
@@ -32,14 +29,12 @@ namespace DataController
         public string Mail { get; set; }
         public int AccountId { get; set; }
         public string Comment { get; set; }
+        public int QueryId { get; set; }
     
-        public virtual AccountDb Account { get; set; }
-        public virtual DeptDb Dept { get; set; }
-        public virtual ICollection<ProjectDb> CreatedProjects { get; set; }
-        public virtual ICollection<ProjectDb> ManagedProjects { get; set; }
-        public virtual ICollection<ProjectDb> WorkedProjects { get; set; }
-        public virtual ICollection<ReclamationDb> CreatedReclamations { get; set; }
-        public virtual ICollection<ReclamationDb> ManagedReclamations { get; set; }
-        public virtual ICollection<ReclamationDb> WorkedReclamation { get; set; }
+        public virtual AccountDb AccountDb { get; set; }
+        public virtual DeptDb DeptDb { get; set; }
+        public virtual ICollection<ProjectDb> ProjectDbs { get; set; }
+        public virtual ICollection<ProjectDb> ProjectDbs1 { get; set; }
+        public virtual ICollection<ProjectDb> ProjectDbs2 { get; set; }
     }
 }

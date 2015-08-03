@@ -16,7 +16,7 @@ namespace DataController
     {
         public AccountDb()
         {
-            this.Users = new HashSet<UserDb>();
+            this.UserDbs = new HashSet<UserDb>();
         }
     
         public int Id { get; set; }
@@ -27,6 +27,6 @@ namespace DataController
         public bool AllowRow { get; set; }
         public bool AllowReclamation { get; set; }
     
-        public virtual ICollection<UserDb> Users { get; set; }
+        public virtual ICollection<UserDb> UserDbs { get; set; }
     }
 }

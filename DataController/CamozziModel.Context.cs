@@ -28,7 +28,6 @@ namespace DataController
         public DbSet<AccountDb> AccountDbs { get; set; }
         public DbSet<DeptDb> DeptDbs { get; set; }
         public DbSet<ProjectDb> ProjectDbs { get; set; }
-        public DbSet<ReclamationDb> ReclamationDbs { get; set; }
         public DbSet<UserDb> UserDbs { get; set; }
     }
 }
