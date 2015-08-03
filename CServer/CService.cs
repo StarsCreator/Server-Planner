@@ -11,108 +11,34 @@ namespace CServer
     {
         public CService()
         {
-            Mapper.CreateMap<ProjectDb, Project>();
-            Mapper.CreateMap<AccountDb, Account>();
-            Mapper.CreateMap<DeptDb, Dept>();
-            Mapper.CreateMap<ReclamationDb, Reclamation>();
-            Mapper.CreateMap<UserDb, User>();
-            Mapper.CreateMap<Project, ProjectDb>();
+            Mapper.CreateMap<AccountDb, AccountDto>();
+            Mapper.CreateMap<DeptDb, DeptDto>();
+            Mapper.CreateMap<UserDb, UserDto>()
+                .ForMember(x => x.AccountDto, opt => opt.MapFrom(a => Mapper.Map<AccountDb, AccountDto>(a.AccountDb)))
+                .ForMember(x => x.DeptDto, opt => opt.MapFrom(a => Mapper.Map<DeptDb, DeptDto>(a.DeptDb)));
+            Mapper.CreateMap<ProjectDb, ProjectDto>()
+                .ForMember(x => x.Creator, opt => opt.MapFrom(a => Mapper.Map<UserDb, UserDto>(a.CreatorDb)))
+                .ForMember(x => x.Manager, opt => opt.MapFrom(a => Mapper.Map<UserDb, UserDto>(a.ManagerDb)))
+                .ForMember(x => x.Worker, opt => opt.MapFrom(a => Mapper.Map<UserDb, UserDto>(a.WorkerDb)));
         }
 
-        public List<Project> GetProjects()
+        public List<ProjectDto> GetProjects()
         {
-            var list = new List<Project>();
+            var list = new List<ProjectDto>();
 
+            var thisTime = new DateTime(DateTime.Today.Year, DateTime.Today.Month, 1);
             using (var context = new CamozziEntities())
             {
-                foreach (var userDb in context.ProjectDbs.Where(x=>x.Start<=new DateTime(2015,3,1)))
+                foreach (var projectDb in context.ProjectDbs.Where(x => x.Finish >= thisTime))
                 {
-                    var user = Mapper.Map<Project>(userDb);
+                    var user = Mapper.Map<ProjectDto>(projectDb);
                     list.Add(user);
                 }
             }
             return list;
         }
 
-        public void AddReclamation(Reclamation t)
-        {
-            var reclamation = new ReclamationDb()
-            {
-                Act = t.Act,
-                Client = t.Client,
-                Comment = t.Comment,
-                Finish = t.Finish,
-                ReclamationAct = t.ReclamationAct,
-                Start = t.Start,
-                State = t.State,
-                Solution = t.Solution,
-                Production = t.Production,
-                Send = t.Send,
-                Nomenclature = t.Nomenclature,
-                Count = t.Count,
-                ManagerId = t.ManagerId,
-                UserId = t.UserId,
-                CreatorId = t.CreatorId
-            };
-            using (var context = new CamozziEntities())
-            {
-                context.ReclamationDbs.Add(reclamation);
-                context.SaveChanges();
-            }
-            Console.WriteLine("Reclamation Add");
-        }
-
-        public void DeleteReclamation(Reclamation t)
-        {
-            using (var context = new CamozziEntities())
-            {
-                context.ReclamationDbs.Remove(context.ReclamationDbs.Find(t.Id));
-                context.SaveChanges();
-            }
-        }
-
-        public void UpdateReclamation(Reclamation t)
-        {
-            using (var context = new CamozziEntities())
-            {
-                var reclamation = context.ReclamationDbs.Find(t.Id);
-                reclamation.Act = t.Act;
-                reclamation.Client = t.Client;
-                reclamation.Comment = t.Comment;
-                reclamation.Finish = t.Finish;
-                reclamation.ReclamationAct = t.ReclamationAct;
-                reclamation.Start = t.Start;
-                reclamation.State = t.State;
-                reclamation.Solution = t.Solution;
-                reclamation.Production = t.Production;
-                reclamation.Send = t.Send;
-                reclamation.Nomenclature = t.Nomenclature;
-                reclamation.Count = t.Count;
-                reclamation.ManagerId = t.ManagerId;
-                reclamation.UserId = t.UserId;
-                reclamation.CreatorId = t.CreatorId;
-                //context.ReclamationDbs.Add(reclamation);
-                context.SaveChanges();
-            }
-        }
-
-        public List<Reclamation> GetByDateReclamation(DateTime start, DateTime finish)
-        {
-            var list = new List<Reclamation>();
-            using (var context = new CamozziEntities())
-            {
-                var proj = (from rec in context.ReclamationDbs
-                    where rec.Start > start
-                    where rec.Finish < finish
-                    select rec).ToList();
-
-                list.AddRange(proj.Select(Mapper.Map<Reclamation>));
-            }
-
-            return list;
-        }
-
-        public void AddUser(User t)
+        public void AddUser(UserDto t)
         {
             var user = new UserDb()
             {
@@ -129,10 +55,12 @@ namespace CServer
             {
                 context.UserDbs.Add(user);
                 context.SaveChanges();
+                user.QueryId = user.Id;
+                context.SaveChanges();
             }
         }
 
-        public void DeleteUser(User t)
+        public void DeleteUser(UserDto t)
         {
             using (var context = new CamozziEntities())
             {
@@ -141,7 +69,7 @@ namespace CServer
             }
         }
 
-        public void UpdateUser(User t)
+        public void UpdateUser(UserDto t)
         {
             using (var context = new CamozziEntities())
             {
@@ -151,14 +79,14 @@ namespace CServer
                 user.Mail = t.Mail;
                 user.Comment = t.Comment;
                 //user.Name = t.Name;
-                user.Phone = t.Phone;               
+                user.Phone = t.Phone;
                 context.SaveChanges();
             }
         }
 
-        public void AddProject(Project t)
+        public void AddProject(ProjectDto t)
         {
-            var project = new ProjectDb()
+            var project = new ProjectDb
             {
                 CreationDate = t.CreationDate,
                 Comment = t.Comment,
@@ -176,11 +104,12 @@ namespace CServer
             {
                 context.ProjectDbs.Add(project);
                 context.SaveChanges();
+                Console.WriteLine("------------------------------------------------------------");
+                Console.WriteLine(DateTime.Now+" Project Added by " + context.UserDbs.First(x=>x.Id==project.CreatorId).Name);
             }
-            Console.WriteLine("Project Add");
         }
 
-        public void DeleteProject(Project t)
+        public void DeleteProject(ProjectDto t)
         {
             using (var context = new CamozziEntities())
             {
@@ -189,53 +118,40 @@ namespace CServer
             }
         }
 
-        public List<User> GetUsers()
+        public List<UserDto> GetUsers()
         {
-            var list = new List<User>();
+            var list = new List<UserDto>();
 
             using (var context = new CamozziEntities())
             {
                 foreach (var userDb in context.UserDbs)
                 {
-                    var user = Mapper.Map<User>(userDb);
+                    var user = Mapper.Map<UserDb, UserDto>(userDb);
                     list.Add(user);
                 }
             }
+            //Console.WriteLine("GetUsers");
             return list;
         }
 
-        public List<Reclamation> GetReclamations()
+        public List<ProjectDto> GetByDateAndDeptProject(DateTime start, DateTime finish, int deptid)
         {
-            var list = new List<Reclamation>();
-
+            List<ProjectDto> list = null;
             using (var context = new CamozziEntities())
             {
-                foreach (var userDb in context.ReclamationDbs)
-                {
-                    var user = Mapper.Map<Reclamation>(userDb);
-                    list.Add(user);
-                }
-            }
-            return list;
-        }
-
-        public List<Project> GetByDateAndDeptProject(DateTime start, DateTime finish, int deptid)
-        {
-            List<Project> list = null;
-            using (var context = new CamozziEntities())
-            {//TODO
+//TODO
                 var proj = (from rec in context.ProjectDbs
                     //where rec.Start > start
                     where rec.Finish < finish
                     select rec).ToList();
 
-                list.AddRange(proj.Select(Mapper.Map<Project>));
+                list.AddRange(proj.Select(Mapper.Map<ProjectDto>));
             }
 
             return list;
         }
 
-        public void UpdateProject(Project t)
+        public void UpdateProject(ProjectDto t)
         {
             using (var context = new CamozziEntities())
             {
@@ -255,7 +171,7 @@ namespace CServer
             }
         }
 
-        public bool CheckPassword(string password,int id)
+        public bool CheckPassword(string password, int id)
         {
             string psw;
             using (var db = new CamozziEntities())

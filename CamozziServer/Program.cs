@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Linq;
 using System.ServiceModel;
+using CServer;
+using DataController;
 
 namespace CamozziServer
 {
@@ -7,11 +10,47 @@ namespace CamozziServer
     {
         static void Main()
         {
-            using (var host = new ServiceHost(typeof(CServer.CService)))
+            using (var host = new ServiceHost(typeof(CService)))
             {
                 host.Open();
                 Console.WriteLine("Host Started...");
-                Console.ReadKey();
+                while (true)
+                {
+                    switch (Console.ReadLine())
+                    {
+                        case "users":
+                        {
+                            using (var context = new CamozziEntities())
+                            {
+                                foreach (var userDb in context.UserDbs)
+                                {
+                                    Console.WriteLine(userDb.Name+"\n");
+                                }
+                            }
+                            break;
+                        }
+                        case "proj":
+                        {
+                            using (var context = new CamozziEntities())
+                            {
+                                Console.WriteLine(context.ProjectDbs.Count());
+                            }
+                            break;
+                        }
+                        case "exit":
+                        {
+                            
+                            //
+                        }
+                        break;
+                        default:
+                        {
+                            Console.WriteLine("Wrong command");
+                            break;
+                        }
+                    }
+                }
+                //Console.ReadKey();
             }
         }
     }

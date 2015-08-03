@@ -2,9 +2,9 @@
 
 namespace DataController.DTO_Model
 {
-    public class Dept
+    public class DeptDto
     {
-        public Dept()
+        public DeptDto()
         {
             //Projects = new List<Project>();
             //Users = new List<User>();

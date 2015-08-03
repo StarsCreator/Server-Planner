@@ -2,10 +2,10 @@
 
 namespace DataController.DTO_Model
 {
-    public class Account
+    public class AccountDto
     {
 
-        public Account()
+        public AccountDto()
         {
             //Users = new List<User>();
         }

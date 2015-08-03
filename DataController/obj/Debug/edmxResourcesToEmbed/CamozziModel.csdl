@@ -11,7 +11,7 @@
     <Property Name="AllowCommment" Type="Boolean" Nullable="false" />
     <Property Name="AllowRow" Type="Boolean" Nullable="false" />
     <Property Name="AllowReclamation" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="Users" Relationship="Self.FK_Users_Accounts" FromRole="Accounts" ToRole="Users" />
+    <NavigationProperty Name="UserDbs" Relationship="Self.FK_Users_Accounts" FromRole="AccountDbs" ToRole="UserDbs" />
   </EntityType>
   <EntityType Name="DeptDb">
     <Key>
@@ -20,8 +20,8 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Projects" Relationship="Self.FK_DeptProject" FromRole="Depts" ToRole="Projects" />
-    <NavigationProperty Name="Users" Relationship="Self.FK_DeptsUsers" FromRole="Depts" ToRole="Users" />
+    <NavigationProperty Name="ProjectDbs" Relationship="Self.FK_DeptProject" FromRole="DeptDbs" ToRole="ProjectDbs" />
+    <NavigationProperty Name="UserDbs" Relationship="Self.FK_DeptsUsers" FromRole="DeptDbs" ToRole="UserDbs" />
   </EntityType>
   <EntityType Name="ProjectDb">
     <Key>
@@ -39,34 +39,10 @@
     <Property Name="Comment" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
     <Property Name="DeptId" Type="Int32" Nullable="false" />
     <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
-    <NavigationProperty Name="Dept" Relationship="Self.FK_DeptProject" FromRole="Projects" ToRole="Depts" />
-    <NavigationProperty Name="Creator" Relationship="Self.FK_UserProject" FromRole="Projects" ToRole="Users" />
-    <NavigationProperty Name="Manager" Relationship="Self.FK_UserProject1" FromRole="Projects" ToRole="Users" />
-    <NavigationProperty Name="Worker" Relationship="Self.FK_UserProject2" FromRole="Projects" ToRole="Users" />
-  </EntityType>
-  <EntityType Name="ReclamationDb">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Start" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="Finish" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="ManagerId" Type="Int32" Nullable="false" />
-    <Property Name="UserId" Type="Int32" Nullable="false" />
-    <Property Name="CreatorId" Type="Int32" Nullable="false" />
-    <Property Name="Send" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="Production" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Nomenclature" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Act" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Count" Type="Int32" Nullable="false" />
-    <Property Name="State" Type="Int32" Nullable="false" />
-    <Property Name="Comment" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="Solution" Type="Boolean" Nullable="false" />
-    <Property Name="Client" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-    <Property Name="ReclamationAct" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Creator" Relationship="Self.FK_UserReclamation" FromRole="Reclamations" ToRole="Users" />
-    <NavigationProperty Name="Manager" Relationship="Self.FK_UserReclamation1" FromRole="Reclamations" ToRole="Users" />
-    <NavigationProperty Name="Worker" Relationship="Self.FK_UserReclamation2" FromRole="Reclamations" ToRole="Users" />
+    <NavigationProperty Name="DeptDb" Relationship="Self.FK_DeptProject" FromRole="ProjectDbs" ToRole="DeptDbs" />
+    <NavigationProperty Name="CreatorDb" Relationship="Self.FK_UserProject" FromRole="ProjectDbs" ToRole="UserDbs" />
+    <NavigationProperty Name="ManagerDb" Relationship="Self.FK_UserProject1" FromRole="ProjectDbs" ToRole="UserDbs" />
+    <NavigationProperty Name="WorkerDb" Relationship="Self.FK_UserProject2" FromRole="ProjectDbs" ToRole="UserDbs" />
   </EntityType>
   <EntityType Name="UserDb">
     <Key>
@@ -80,164 +56,113 @@
     <Property Name="Mail" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
     <Property Name="AccountId" Type="Int32" Nullable="false" />
     <Property Name="Comment" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Account" Relationship="Self.FK_Users_Accounts" FromRole="Users" ToRole="Accounts" />
-    <NavigationProperty Name="Dept" Relationship="Self.FK_DeptsUsers" FromRole="Users" ToRole="Depts" />
-    <NavigationProperty Name="CreatedProjects" Relationship="Self.FK_UserProject" FromRole="Users" ToRole="Projects" />
-    <NavigationProperty Name="ManagedProjects" Relationship="Self.FK_UserProject1" FromRole="Users" ToRole="Projects" />
-    <NavigationProperty Name="WorkedProjects" Relationship="Self.FK_UserProject2" FromRole="Users" ToRole="Projects" />
-    <NavigationProperty Name="CreatedReclamations" Relationship="Self.FK_UserReclamation" FromRole="Users" ToRole="Reclamations" />
-    <NavigationProperty Name="ManagedReclamations" Relationship="Self.FK_UserReclamation1" FromRole="Users" ToRole="Reclamations" />
-    <NavigationProperty Name="WorkedReclamation" Relationship="Self.FK_UserReclamation2" FromRole="Users" ToRole="Reclamations" />
+    <NavigationProperty Name="AccountDb" Relationship="Self.FK_Users_Accounts" FromRole="UserDbs" ToRole="AccountDbs" />
+    <NavigationProperty Name="DeptDb" Relationship="Self.FK_DeptsUsers" FromRole="UserDbs" ToRole="DeptDbs" />
+    <NavigationProperty Name="ProjectDbs" Relationship="Self.FK_UserProject" FromRole="UserDbs" ToRole="ProjectDbs" />
+    <NavigationProperty Name="ProjectDbs1" Relationship="Self.FK_UserProject1" FromRole="UserDbs" ToRole="ProjectDbs" />
+    <NavigationProperty Name="ProjectDbs2" Relationship="Self.FK_UserProject2" FromRole="UserDbs" ToRole="ProjectDbs" />
+    <Property Name="QueryId" Type="Int32" Nullable="false" />
   </EntityType>
   <Association Name="FK_Users_Accounts">
-    <End Role="Accounts" Type="CamozziModel.AccountDb" Multiplicity="1" />
-    <End Role="Users" Type="CamozziModel.UserDb" Multiplicity="*" />
+    <End Role="AccountDbs" Type="Self.AccountDb" Multiplicity="1" />
+    <End Role="UserDbs" Type="Self.UserDb" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Accounts">
+      <Principal Role="AccountDbs">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Users">
+      <Dependent Role="UserDbs">
         <PropertyRef Name="AccountId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_DeptProject">
-    <End Role="Depts" Type="CamozziModel.DeptDb" Multiplicity="1" />
-    <End Role="Projects" Type="CamozziModel.ProjectDb" Multiplicity="*" />
+    <End Role="DeptDbs" Type="Self.DeptDb" Multiplicity="1" />
+    <End Role="ProjectDbs" Type="Self.ProjectDb" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Depts">
+      <Principal Role="DeptDbs">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Projects">
+      <Dependent Role="ProjectDbs">
         <PropertyRef Name="DeptId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_DeptsUsers">
-    <End Role="Depts" Type="CamozziModel.DeptDb" Multiplicity="1" />
-    <End Role="Users" Type="CamozziModel.UserDb" Multiplicity="*" />
+    <End Role="DeptDbs" Type="Self.DeptDb" Multiplicity="1" />
+    <End Role="UserDbs" Type="Self.UserDb" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Depts">
+      <Principal Role="DeptDbs">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Users">
+      <Dependent Role="UserDbs">
         <PropertyRef Name="DeptId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_UserProject">
-    <End Role="Users" Type="CamozziModel.UserDb" Multiplicity="1" />
-    <End Role="Projects" Type="CamozziModel.ProjectDb" Multiplicity="*" />
+    <End Role="UserDbs" Type="Self.UserDb" Multiplicity="1" />
+    <End Role="ProjectDbs" Type="Self.ProjectDb" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Users">
+      <Principal Role="UserDbs">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Projects">
+      <Dependent Role="ProjectDbs">
         <PropertyRef Name="CreatorId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_UserProject1">
-    <End Role="Users" Type="CamozziModel.UserDb" Multiplicity="1" />
-    <End Role="Projects" Type="CamozziModel.ProjectDb" Multiplicity="*" />
+    <End Role="UserDbs" Type="Self.UserDb" Multiplicity="1" />
+    <End Role="ProjectDbs" Type="Self.ProjectDb" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Users">
+      <Principal Role="UserDbs">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Projects">
+      <Dependent Role="ProjectDbs">
         <PropertyRef Name="ManagerId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_UserProject2">
-    <End Role="Users" Type="CamozziModel.UserDb" Multiplicity="1" />
-    <End Role="Projects" Type="CamozziModel.ProjectDb" Multiplicity="*" />
+    <End Role="UserDbs" Type="Self.UserDb" Multiplicity="1" />
+    <End Role="ProjectDbs" Type="Self.ProjectDb" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Users">
+      <Principal Role="UserDbs">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Projects">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_UserReclamation">
-    <End Role="Users" Type="CamozziModel.UserDb" Multiplicity="1" />
-    <End Role="Reclamations" Type="CamozziModel.ReclamationDb" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Users">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Reclamations">
-        <PropertyRef Name="CreatorId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_UserReclamation1">
-    <End Role="Users" Type="CamozziModel.UserDb" Multiplicity="1" />
-    <End Role="Reclamations" Type="CamozziModel.ReclamationDb" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Users">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Reclamations">
-        <PropertyRef Name="ManagerId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_UserReclamation2">
-    <End Role="Users" Type="CamozziModel.UserDb" Multiplicity="1" />
-    <End Role="Reclamations" Type="CamozziModel.ReclamationDb" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Users">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Reclamations">
+      <Dependent Role="ProjectDbs">
         <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="CamozziEntities" annotation:LazyLoadingEnabled="true">
-    <EntitySet Name="AccountDbs" EntityType="CamozziModel.AccountDb" />
-    <EntitySet Name="DeptDbs" EntityType="CamozziModel.DeptDb" />
-    <EntitySet Name="ProjectDbs" EntityType="CamozziModel.ProjectDb" />
-    <EntitySet Name="ReclamationDbs" EntityType="CamozziModel.ReclamationDb" />
-    <EntitySet Name="UserDbs" EntityType="CamozziModel.UserDb" />
+    <EntitySet Name="AccountDbs" EntityType="Self.AccountDb" />
+    <EntitySet Name="DeptDbs" EntityType="Self.DeptDb" />
+    <EntitySet Name="ProjectDbs" EntityType="Self.ProjectDb" />
+    <EntitySet Name="UserDbs" EntityType="Self.UserDb" />
     <AssociationSet Name="FK_Users_Accounts" Association="Self.FK_Users_Accounts">
-      <End Role="Accounts" EntitySet="AccountDbs" />
-      <End Role="Users" EntitySet="UserDbs" />
+      <End Role="AccountDbs" EntitySet="AccountDbs" />
+      <End Role="UserDbs" EntitySet="UserDbs" />
     </AssociationSet>
     <AssociationSet Name="FK_DeptProject" Association="Self.FK_DeptProject">
-      <End Role="Depts" EntitySet="DeptDbs" />
-      <End Role="Projects" EntitySet="ProjectDbs" />
+      <End Role="DeptDbs" EntitySet="DeptDbs" />
+      <End Role="ProjectDbs" EntitySet="ProjectDbs" />
     </AssociationSet>
     <AssociationSet Name="FK_DeptsUsers" Association="Self.FK_DeptsUsers">
-      <End Role="Depts" EntitySet="DeptDbs" />
-      <End Role="Users" EntitySet="UserDbs" />
+      <End Role="DeptDbs" EntitySet="DeptDbs" />
+      <End Role="UserDbs" EntitySet="UserDbs" />
     </AssociationSet>
     <AssociationSet Name="FK_UserProject" Association="Self.FK_UserProject">
-      <End Role="Users" EntitySet="UserDbs" />
-      <End Role="Projects" EntitySet="ProjectDbs" />
+      <End Role="UserDbs" EntitySet="UserDbs" />
+      <End Role="ProjectDbs" EntitySet="ProjectDbs" />
     </AssociationSet>
     <AssociationSet Name="FK_UserProject1" Association="Self.FK_UserProject1">
-      <End Role="Users" EntitySet="UserDbs" />
-      <End Role="Projects" EntitySet="ProjectDbs" />
+      <End Role="UserDbs" EntitySet="UserDbs" />
+      <End Role="ProjectDbs" EntitySet="ProjectDbs" />
     </AssociationSet>
     <AssociationSet Name="FK_UserProject2" Association="Self.FK_UserProject2">
-      <End Role="Users" EntitySet="UserDbs" />
-      <End Role="Projects" EntitySet="ProjectDbs" />
-    </AssociationSet>
-    <AssociationSet Name="FK_UserReclamation" Association="Self.FK_UserReclamation">
-      <End Role="Users" EntitySet="UserDbs" />
-      <End Role="Reclamations" EntitySet="ReclamationDbs" />
-    </AssociationSet>
-    <AssociationSet Name="FK_UserReclamation1" Association="Self.FK_UserReclamation1">
-      <End Role="Users" EntitySet="UserDbs" />
-      <End Role="Reclamations" EntitySet="ReclamationDbs" />
-    </AssociationSet>
-    <AssociationSet Name="FK_UserReclamation2" Association="Self.FK_UserReclamation2">
-      <End Role="Users" EntitySet="UserDbs" />
-      <End Role="Reclamations" EntitySet="ReclamationDbs" />
+      <End Role="UserDbs" EntitySet="UserDbs" />
+      <End Role="ProjectDbs" EntitySet="ProjectDbs" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

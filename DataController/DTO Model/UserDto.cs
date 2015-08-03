@@ -3,18 +3,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DataController.DTO_Model
 {
-    public class User
+    public class UserDto
     {
-
-        public User()
-        {
-            //CreatedProjects = new List<Project>();
-            //WorkProjects = new List<Project>();
-            //ManagedProjects = new List<Project>();
-            //CreatedReclamations = new List<Reclamation>();
-            //ManagedReclamations = new List<Reclamation>();
-            //WorkReclamations = new List<Reclamation>();
-        }
 
         public int Id { get; set; }
         public string Name { get; set; }
@@ -23,18 +13,14 @@ namespace DataController.DTO_Model
         public string Mail { get; set; }
         public int AccountId { get; set; }
         public string Comment { get; set; }
+        public int QueryId { get; set; }
         public object AllProjectsRow { get; set; }
         public object SelfProjectsRow { get; set; }
         public object AllReclamationRow { get; set; }
         public object SelfReclamationRow { get; set; }
     
-        public Account Account { get; set; }
-        public Dept Dept { get; set; }
-
-        public override string ToString()
-        {
-            return Name;
-        }
+        public AccountDto AccountDto { get; set; }
+        public DeptDto DeptDto { get; set; }
 
         //public virtual List<Project> CreatedProjects { get; set; }
         //public virtual List<Project> ManagedProjects { get; set; }

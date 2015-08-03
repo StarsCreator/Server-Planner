@@ -10,48 +10,33 @@ namespace CServer
     {
 
         [OperationContract]
-        List<Project> GetProjects();
+        List<ProjectDto> GetProjects();
 
         [OperationContract]
-        void AddReclamation(Reclamation t);
+        void AddUser(UserDto t);
 
         [OperationContract]
-        void DeleteReclamation(Reclamation t);
+        void DeleteUser(UserDto t);
 
         [OperationContract]
-        void UpdateReclamation(Reclamation t);
+        void UpdateUser(UserDto t);
 
         [OperationContract]
-        List<Reclamation> GetByDateReclamation(DateTime start, DateTime finish);
+        void AddProject(ProjectDto t);
 
         [OperationContract]
-        void AddUser(User t);
+        void DeleteProject(ProjectDto t);
 
         [OperationContract]
-        void DeleteUser(User t);
-
-        [OperationContract]
-        void UpdateUser(User t);
-
-        [OperationContract]
-        void AddProject(Project t);
-
-        [OperationContract]
-        void DeleteProject(Project t);
-
-        [OperationContract]
-        List<User> GetUsers();
+        List<UserDto> GetUsers();
 
         [OperationContract]
         bool CheckPassword(string password, int id);
 
         [OperationContract]
-        List<Reclamation> GetReclamations();
+        List<ProjectDto> GetByDateAndDeptProject(DateTime start, DateTime finish, int deptid);
 
         [OperationContract]
-        List<Project> GetByDateAndDeptProject(DateTime start, DateTime finish, int deptid);
-
-        [OperationContract]
-        void UpdateProject(Project t);
+        void UpdateProject(ProjectDto t);
     }
 }

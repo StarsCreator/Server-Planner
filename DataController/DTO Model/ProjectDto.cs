@@ -2,7 +2,7 @@
 
 namespace DataController.DTO_Model
 {
-    public class Project
+    public class ProjectDto
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -18,9 +18,9 @@ namespace DataController.DTO_Model
         public DateTime CreationDate { get; set; }
         public bool AllowChanges { get; set; }
 
-        public virtual Dept Depts { get; set; }
-        public virtual User Creator { get; set; }
-        public virtual User Manager { get; set; }
-        public virtual User Worker { get; set; }
+        public virtual DeptDto DeptsDto { get; set; }
+        public virtual UserDto Creator { get; set; }
+        public virtual UserDto Manager { get; set; }
+        public virtual UserDto Worker { get; set; }
     }
 }

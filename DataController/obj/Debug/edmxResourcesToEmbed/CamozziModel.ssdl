@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="CamozziModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
-  <EntityType Name="Accounts">
+  <EntityType Name="AccountDbs">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
@@ -12,7 +12,7 @@
     <Property Name="AllowRow" Type="bit" Nullable="false" />
     <Property Name="AllowReclamation" Type="bit" Nullable="false" />
   </EntityType>
-  <EntityType Name="Depts">
+  <EntityType Name="DeptDbs">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
@@ -20,7 +20,7 @@
     <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
     <Property Name="Description" Type="nvarchar" MaxLength="1000" />
   </EntityType>
-  <EntityType Name="Projects">
+  <EntityType Name="ProjectDbs">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
@@ -37,28 +37,7 @@
     <Property Name="DeptId" Type="int" Nullable="false" />
     <Property Name="CreationDate" Type="datetime" Nullable="false" />
   </EntityType>
-  <EntityType Name="Reclamations">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Start" Type="datetime" Nullable="false" />
-    <Property Name="Finish" Type="datetime" Nullable="false" />
-    <Property Name="ManagerId" Type="int" Nullable="false" />
-    <Property Name="UserId" Type="int" Nullable="false" />
-    <Property Name="CreatorId" Type="int" Nullable="false" />
-    <Property Name="Send" Type="datetime" Nullable="false" />
-    <Property Name="Production" Type="nvarchar" MaxLength="1000" Nullable="false" />
-    <Property Name="Nomenclature" Type="nvarchar" MaxLength="200" Nullable="false" />
-    <Property Name="Act" Type="nvarchar" MaxLength="100" Nullable="false" />
-    <Property Name="Count" Type="int" Nullable="false" />
-    <Property Name="State" Type="int" Nullable="false" />
-    <Property Name="Comment" Type="nvarchar" MaxLength="1000" Nullable="false" />
-    <Property Name="Solution" Type="bit" Nullable="false" />
-    <Property Name="Client" Type="nvarchar" MaxLength="1000" />
-    <Property Name="ReclamationAct" Type="nvarchar" MaxLength="1000" />
-  </EntityType>
-  <EntityType Name="Users">
+  <EntityType Name="UserDbs">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
@@ -70,156 +49,108 @@
     <Property Name="Mail" Type="nvarchar" MaxLength="200" />
     <Property Name="AccountId" Type="int" Nullable="false" />
     <Property Name="Comment" Type="nvarchar" MaxLength="1000" />
+    <Property Name="QueryId" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="FK_DeptProject">
-    <End Role="Depts" Type="Self.Depts" Multiplicity="1" />
-    <End Role="Projects" Type="Self.Projects" Multiplicity="*" />
+    <End Role="DeptDbs" Type="Self.DeptDbs" Multiplicity="1" />
+    <End Role="ProjectDbs" Type="Self.ProjectDbs" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Depts">
+      <Principal Role="DeptDbs">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Projects">
+      <Dependent Role="ProjectDbs">
         <PropertyRef Name="DeptId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_DeptsUsers">
-    <End Role="Depts" Type="Self.Depts" Multiplicity="1" />
-    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <End Role="DeptDbs" Type="Self.DeptDbs" Multiplicity="1" />
+    <End Role="UserDbs" Type="Self.UserDbs" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Depts">
+      <Principal Role="DeptDbs">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Users">
+      <Dependent Role="UserDbs">
         <PropertyRef Name="DeptId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_UserProject">
-    <End Role="Users" Type="Self.Users" Multiplicity="1" />
-    <End Role="Projects" Type="Self.Projects" Multiplicity="*" />
+    <End Role="UserDbs" Type="Self.UserDbs" Multiplicity="1" />
+    <End Role="ProjectDbs" Type="Self.ProjectDbs" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Users">
+      <Principal Role="UserDbs">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Projects">
+      <Dependent Role="ProjectDbs">
         <PropertyRef Name="CreatorId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_UserProject1">
-    <End Role="Users" Type="Self.Users" Multiplicity="1" />
-    <End Role="Projects" Type="Self.Projects" Multiplicity="*" />
+    <End Role="UserDbs" Type="Self.UserDbs" Multiplicity="1" />
+    <End Role="ProjectDbs" Type="Self.ProjectDbs" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Users">
+      <Principal Role="UserDbs">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Projects">
+      <Dependent Role="ProjectDbs">
         <PropertyRef Name="ManagerId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_UserProject2">
-    <End Role="Users" Type="Self.Users" Multiplicity="1" />
-    <End Role="Projects" Type="Self.Projects" Multiplicity="*" />
+    <End Role="UserDbs" Type="Self.UserDbs" Multiplicity="1" />
+    <End Role="ProjectDbs" Type="Self.ProjectDbs" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Users">
+      <Principal Role="UserDbs">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Projects">
-        <PropertyRef Name="UserId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_UserReclamation">
-    <End Role="Users" Type="Self.Users" Multiplicity="1" />
-    <End Role="Reclamations" Type="Self.Reclamations" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Users">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Reclamations">
-        <PropertyRef Name="CreatorId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_UserReclamation1">
-    <End Role="Users" Type="Self.Users" Multiplicity="1" />
-    <End Role="Reclamations" Type="Self.Reclamations" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Users">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Reclamations">
-        <PropertyRef Name="ManagerId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_UserReclamation2">
-    <End Role="Users" Type="Self.Users" Multiplicity="1" />
-    <End Role="Reclamations" Type="Self.Reclamations" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Users">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Reclamations">
+      <Dependent Role="ProjectDbs">
         <PropertyRef Name="UserId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Users_Accounts">
-    <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
-    <End Role="Users" Type="Self.Users" Multiplicity="*" />
+    <End Role="AccountDbs" Type="Self.AccountDbs" Multiplicity="1" />
+    <End Role="UserDbs" Type="Self.UserDbs" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="Accounts">
+      <Principal Role="AccountDbs">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="Users">
+      <Dependent Role="UserDbs">
         <PropertyRef Name="AccountId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="CamozziModelStoreContainer">
-    <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Depts" EntityType="Self.Depts" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Projects" EntityType="Self.Projects" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Reclamations" EntityType="Self.Reclamations" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="AccountDbs" EntityType="Self.AccountDbs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DeptDbs" EntityType="Self.DeptDbs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProjectDbs" EntityType="Self.ProjectDbs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserDbs" EntityType="Self.UserDbs" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_DeptProject" Association="Self.FK_DeptProject">
-      <End Role="Depts" EntitySet="Depts" />
-      <End Role="Projects" EntitySet="Projects" />
+      <End Role="DeptDbs" EntitySet="DeptDbs" />
+      <End Role="ProjectDbs" EntitySet="ProjectDbs" />
     </AssociationSet>
     <AssociationSet Name="FK_DeptsUsers" Association="Self.FK_DeptsUsers">
-      <End Role="Depts" EntitySet="Depts" />
-      <End Role="Users" EntitySet="Users" />
+      <End Role="DeptDbs" EntitySet="DeptDbs" />
+      <End Role="UserDbs" EntitySet="UserDbs" />
     </AssociationSet>
     <AssociationSet Name="FK_UserProject" Association="Self.FK_UserProject">
-      <End Role="Users" EntitySet="Users" />
-      <End Role="Projects" EntitySet="Projects" />
+      <End Role="UserDbs" EntitySet="UserDbs" />
+      <End Role="ProjectDbs" EntitySet="ProjectDbs" />
     </AssociationSet>
     <AssociationSet Name="FK_UserProject1" Association="Self.FK_UserProject1">
-      <End Role="Users" EntitySet="Users" />
-      <End Role="Projects" EntitySet="Projects" />
+      <End Role="UserDbs" EntitySet="UserDbs" />
+      <End Role="ProjectDbs" EntitySet="ProjectDbs" />
     </AssociationSet>
     <AssociationSet Name="FK_UserProject2" Association="Self.FK_UserProject2">
-      <End Role="Users" EntitySet="Users" />
-      <End Role="Projects" EntitySet="Projects" />
-    </AssociationSet>
-    <AssociationSet Name="FK_UserReclamation" Association="Self.FK_UserReclamation">
-      <End Role="Users" EntitySet="Users" />
-      <End Role="Reclamations" EntitySet="Reclamations" />
-    </AssociationSet>
-    <AssociationSet Name="FK_UserReclamation1" Association="Self.FK_UserReclamation1">
-      <End Role="Users" EntitySet="Users" />
-      <End Role="Reclamations" EntitySet="Reclamations" />
-    </AssociationSet>
-    <AssociationSet Name="FK_UserReclamation2" Association="Self.FK_UserReclamation2">
-      <End Role="Users" EntitySet="Users" />
-      <End Role="Reclamations" EntitySet="Reclamations" />
+      <End Role="UserDbs" EntitySet="UserDbs" />
+      <End Role="ProjectDbs" EntitySet="ProjectDbs" />
     </AssociationSet>
     <AssociationSet Name="FK_Users_Accounts" Association="Self.FK_Users_Accounts">
-      <End Role="Accounts" EntitySet="Accounts" />
-      <End Role="Users" EntitySet="Users" />
+      <End Role="AccountDbs" EntitySet="AccountDbs" />
+      <End Role="UserDbs" EntitySet="UserDbs" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

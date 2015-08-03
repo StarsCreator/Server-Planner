@@ -67,24 +67,22 @@
     <Compile Include="DeptDb.cs">
       <DependentUpon>CamozziModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="DTO Model\Account.cs" />
-    <Compile Include="DTO Model\Dept.cs" />
-    <Compile Include="DTO Model\Project.cs" />
-    <Compile Include="DTO Model\Reclamation.cs" />
-    <Compile Include="DTO Model\User.cs" />
+    <Compile Include="DTO Model\AccountDto.cs" />
+    <Compile Include="DTO Model\DeptDto.cs" />
+    <Compile Include="DTO Model\ProjectDto.cs" />
+    <Compile Include="DTO Model\UserDto.cs" />
     <Compile Include="ProjectDb.cs">
       <DependentUpon>CamozziModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReclamationDb.cs">
-      <DependentUpon>CamozziModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="UserDb.cs">
       <DependentUpon>CamozziModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
+    <None Include="App.Config">
+      <SubType>Designer</SubType>
+    </None>
     <EntityDeploy Include="CamozziModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>CamozziModel.Designer.cs</LastGenOutput>
@@ -106,6 +104,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="CamozziModel.edmx.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
