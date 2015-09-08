@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" manifestVersion="1.0" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2">
-  <asmv1:assemblyIdentity name="CamozziServer.exe" version="1.0.0.24" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
+  <asmv1:assemblyIdentity name="CamozziServer.exe" version="1.0.0.30" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
   <application />
   <entryPoint>
     <assemblyIdentity name="CamozziServer" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
@@ -61,7 +61,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>qkIQuWmwOGpujGZ3hlXVuzju2xU=</dsig:DigestValue>
+        <dsig:DigestValue>pFL6lzeEZrCvbWer0mU6AcR3/EU=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -73,19 +73,19 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>2XzOn7rMkqdwddDvOvsoxXyVfEQ=</dsig:DigestValue>
+        <dsig:DigestValue>JrsiA+7jI9O2CRe+yf1ATpK4nYA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DataController.dll" size="52224">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="DataController.dll" size="37888">
       <assemblyIdentity name="DataController" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>x1QvQH2NyEqSQ3GkNWtOviHZ/o0=</dsig:DigestValue>
+        <dsig:DigestValue>bh+v2CLvB25Au3ifYVLY+20vBQs=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -101,13 +101,13 @@
       </hash>
     </dependentAssembly>
   </dependency>
-  <file name="CamozziServer.exe.config" size="1432">
+  <file name="CamozziServer.exe.config" size="1465">
     <hash>
       <dsig:Transforms>
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>kW/cZFArxmlc+0wPUnEbg6Z2LXk=</dsig:DigestValue>
+      <dsig:DigestValue>v3T372txKT3DDVkhN7LEYWHryqE=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

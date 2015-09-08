@@ -58,8 +58,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CService.cs" />
-    <Compile Include="ICService.cs" />
+    <Compile Include="Chat\ChatMessage.cs" />
+    <Compile Include="Contracts\IChatManager.cs" />
+    <Compile Include="ServiceManager.cs" />
+    <Compile Include="Contracts\ICServiceManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

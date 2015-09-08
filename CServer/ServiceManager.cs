@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common.CommandTrees;
 using System.Linq;
+using System.ServiceModel;
 using AutoMapper;
+using CServer.Contracts;
 using DataController;
 using DataController.DTO_Model;
 
 namespace CServer
 {
-    public class CService : ICService
+    public class ServiceManager : ICServiceManager
     {
-        public CService()
+        public ServiceManager()
         {
             Mapper.CreateMap<AccountDb, AccountDto>();
             Mapper.CreateMap<DeptDb, DeptDto>();
@@ -20,6 +23,26 @@ namespace CServer
                 .ForMember(x => x.Creator, opt => opt.MapFrom(a => Mapper.Map<UserDb, UserDto>(a.CreatorDb)))
                 .ForMember(x => x.Manager, opt => opt.MapFrom(a => Mapper.Map<UserDb, UserDto>(a.ManagerDb)))
                 .ForMember(x => x.Worker, opt => opt.MapFrom(a => Mapper.Map<UserDb, UserDto>(a.WorkerDb)));
+        }
+
+        private Dictionary<string, ICService> _clients = new Dictionary<string, ICService>();
+
+        public void RegisterClient(string name)
+        {
+            var client = OperationContext.Current.GetCallbackChannel<ICService>();
+            if (client == null) return;
+            _clients.Add(name, client);
+            Console.WriteLine("------------------------------------------------------------");
+            Console.WriteLine("{0} joined", name);
+        }
+
+        public void RemoveClient(string name)
+        {
+            if (_clients[name] == null) return;
+            _clients.Remove(name);
+
+            Console.WriteLine("------------------------------------------------------------");
+            Console.WriteLine("{0} closing", name);
         }
 
         public List<ProjectDto> GetProjects()
@@ -105,17 +128,23 @@ namespace CServer
                 context.ProjectDbs.Add(project);
                 context.SaveChanges();
                 Console.WriteLine("------------------------------------------------------------");
-                Console.WriteLine(DateTime.Now+" Project Added by " + context.UserDbs.First(x=>x.Id==project.CreatorId).Name);
+                Console.WriteLine(DateTime.Now + " Project Added by " +
+                                  context.UserDbs.First(x => x.Id == project.CreatorId).Name);
             }
+            UpdateClients();
         }
 
         public void DeleteProject(ProjectDto t)
         {
             using (var context = new CamozziEntities())
             {
+                Console.WriteLine("------------------------------------------------------------");
+                Console.WriteLine(DateTime.Now + " Project Deleted by " +
+                                  context.UserDbs.First(x => x.Id == t.UserId).Name);
                 context.ProjectDbs.Remove(context.ProjectDbs.Find(t.Id));
                 context.SaveChanges();
             }
+            UpdateClients();
         }
 
         public List<UserDto> GetUsers()
@@ -168,7 +197,11 @@ namespace CServer
                 project.State = t.State;
                 project.UserId = t.UserId;
                 context.SaveChanges();
+                Console.WriteLine("------------------------------------------------------------");
+                Console.WriteLine(DateTime.Now + " Project Updated by " +
+                                  context.UserDbs.First(x => x.Id == project.UserId).Name);
             }
+            UpdateClients();
         }
 
         public bool CheckPassword(string password, int id)
@@ -179,6 +212,23 @@ namespace CServer
                 psw = db.UserDbs.First(x => x.Id == id).Password;
             }
             return psw == password;
+        }
+
+        private void UpdateClients()
+        {
+            var project = GetProjects();
+            var user = GetUsers();
+            foreach (var key in _clients.Keys)
+            {
+                try
+                {
+                    _clients[key].SendUpdates(project,user);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.ToString());
+                }
+            }
         }
     }
 }

@@ -10,7 +10,7 @@ namespace CamozziServer
     {
         static void Main()
         {
-            using (var host = new ServiceHost(typeof(CService)))
+            using (var host = new ServiceHost(typeof(ServiceManager)))
             {
                 host.Open();
                 Console.WriteLine("Host Started...");
@@ -28,15 +28,7 @@ namespace CamozziServer
                                 }
                             }
                             break;
-                        }
-                        case "proj":
-                        {
-                            using (var context = new CamozziEntities())
-                            {
-                                Console.WriteLine(context.ProjectDbs.Count());
-                            }
-                            break;
-                        }
+                        }                 
                         case "exit":
                         {
                             
